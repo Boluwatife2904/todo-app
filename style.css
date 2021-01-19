@@ -281,4 +281,8 @@ body {
   .todos-container .main-content .todos-footer .filter input + label{
       margin-right: 20px;
   }
+
+  .todos-container .main-content .todos-footer .filter input + label:last-child{
+    margin-right: 0;
+  }
 }
