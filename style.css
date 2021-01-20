@@ -33,7 +33,6 @@ body {
   height: 75vh;
   padding: 50px;
   background-color: hsl(235, 21%, 11%);
-  transition: all 0.2s ease-in;
 }
 
 .light-theme .rest-of-content {
@@ -377,7 +376,7 @@ body {
     border-radius: 4px;
   }
 
-  .todos-container .main-content .todos-footer .filter {
+  .light-theme .todos-container .main-content .todos-footer .filter {
     background-color: hsl(0, 0%, 98%);
     box-shadow:  0px 0px 10px rgba(0, 0, 0, 0.2);
   }
