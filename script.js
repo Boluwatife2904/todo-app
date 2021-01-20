@@ -62,9 +62,7 @@ const app = Vue.createApp({
       localStorage.setItem("goals", JSON.stringify(this.goals));
     },
     clearCompleted() {
-      this.goals = this.goals.filter(function (goal) {
-        return goal.completed === false;
-      });
+      this.goals = this.goals.filter((goal) => goal.completed === false);
       localStorage.setItem("goals", JSON.stringify(this.goals));
     },
     toggleTheme() {
@@ -73,21 +71,15 @@ const app = Vue.createApp({
   },
   computed: {
     remainingGoals() {
-      return this.goals.filter(function (goal) {
-        return goal.completed === false;
-      });
+      return this.goals.filter((goal) => goal.completed === false);
     },
     filteredGoals() {
       if (this.selectedFilter === "All") {
         return this.goals;
       } else if (this.selectedFilter === "Active") {
-        return this.goals.filter(function (goal) {
-          return goal.completed === false;
-        });
+        return this.goals.filter((goal) => goal.completed === false);
       } else if (this.selectedFilter === "Completed") {
-        return this.goals.filter(function (goal) {
-          return goal.completed;
-        });
+        return this.goals.filter((goal) => goal.completed);
       }
     },
   },
