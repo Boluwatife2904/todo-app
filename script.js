@@ -34,7 +34,13 @@ const app = Vue.createApp({
       ],
       selectedFilter: "All",
       newGoalValue: "",
+      lightMode: false,
     };
+  },
+  watch: {
+    lightMode() {
+      localStorage.setItem("lightMode", JSON.stringify(this.lightMode));
+    },
   },
   methods: {
     addGoal() {
@@ -43,19 +49,26 @@ const app = Vue.createApp({
           name: this.newGoalValue,
           completed: false,
         });
+        localStorage.setItem("goals", JSON.stringify(this.goals));
       }
       this.newGoalValue = "";
     },
     deleteGoal(index) {
       this.goals.splice(index, 1);
+      localStorage.setItem("goals", JSON.stringify(this.goals));
     },
     toggleGoal(goal) {
       goal.completed = !goal.completed;
+      localStorage.setItem("goals", JSON.stringify(this.goals));
     },
     clearCompleted() {
       this.goals = this.goals.filter(function (goal) {
         return goal.completed === false;
       });
+      localStorage.setItem("goals", JSON.stringify(this.goals));
+    },
+    toggleTheme() {
+      this.lightMode = !this.lightMode;
     },
   },
   computed: {
@@ -71,12 +84,16 @@ const app = Vue.createApp({
         return this.goals.filter(function (goal) {
           return goal.completed === false;
         });
-      } else if(this.selectedFilter === "Completed"){
+      } else if (this.selectedFilter === "Completed") {
         return this.goals.filter(function (goal) {
-            return goal.completed
-          });
+          return goal.completed;
+        });
       }
     },
+  },
+  created() {
+    this.lightMode = JSON.parse(localStorage.getItem("lightMode"));
+    this.goals = JSON.parse(localStorage.getItem("goals")) || this.goals;
   },
 });
 
